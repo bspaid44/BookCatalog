@@ -8,9 +8,6 @@ using (BookCatalogContext context = new BookCatalogContext())
 {
     context.Database.EnsureCreated();
 }
-List<Book> books = new List<Book>();
-
-List<Author> authors = new List<Author>();
 
 string userOption;
 
