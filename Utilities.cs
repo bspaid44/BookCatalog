@@ -13,27 +13,19 @@ namespace BookCatalog
 
         public static void AddBook()
         {
-            Console.WriteLine("Enter the title of the book: ");
-            string title = Console.ReadLine();
-            Console.WriteLine("Enter the genre of the book: ");
-            string genre = Console.ReadLine();
-            Book book = new Book(title, genre);
-            using (BookCatalogContext context = new BookCatalogContext())
-            {
-                context.Books.Add(book);
-                context.SaveChanges();
-            }
-        }
-
-        public static void AddAuthor()
-        {
             Console.WriteLine("Enter the first name of the author: ");
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter the last name of the author: ");
             string lastName = Console.ReadLine();
             Author author = new Author(firstName, lastName);
+            Console.WriteLine("Enter the title of the book: ");
+            string title = Console.ReadLine();
+            Console.WriteLine("Enter the genre of the book: ");
+            string genre = Console.ReadLine();
+            Book book = new Book(title, genre, author);
             using (BookCatalogContext context = new BookCatalogContext())
             {
+                context.Books.Add(book);
                 context.Authors.Add(author);
                 context.SaveChanges();
             }

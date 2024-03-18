@@ -16,7 +16,6 @@ do
     Console.WriteLine("Welcome to the Book Catalog!");
     Console.WriteLine("Please select an option:");
     Console.WriteLine("1. Add a book");
-    Console.WriteLine("2. Add an author");
     Console.WriteLine("9. Exit");
 
     userOption = Console.ReadLine();
@@ -26,10 +25,6 @@ do
         case "1":
             Utilities.AddBook();
             Console.WriteLine("Book added successfully!");
-            break;
-        case "2":
-            Utilities.AddAuthor();
-            Console.WriteLine("Author added successfully!");
             break;
         case "9":
             Console.WriteLine("Goodbye!");
