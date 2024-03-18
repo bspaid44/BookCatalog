@@ -13,9 +13,9 @@ namespace BookCatalog.Models
         public string Title { get; set; }
         public string Genre { get; set; }
         public Author Author { get; set; }
-
-        [ForeignKey("Author")]
+        [ForeignKey("AuthorId")]
         public int AuthorId { get; set; }
+        
 
         public Book()
         {

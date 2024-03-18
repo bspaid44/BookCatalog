@@ -30,5 +30,37 @@ namespace BookCatalog
                 context.SaveChanges();
             }
         }
+
+        public static void GetBooks()
+        {
+            using (BookCatalogContext context = new BookCatalogContext())
+            {
+                var books = context.Books.ToList();
+                var authors = context.Authors.ToList();
+                foreach (var book in books)
+                {
+                    foreach (var author in authors)
+                    {
+                        if (book.AuthorId == author.AuthorId)
+                        {
+                            book.Author = author;
+                        }
+                    }
+                    Console.WriteLine($"Title: {book.Title}, Genre: {book.Genre}, Author: {book.Author.FirstName} {book.Author.LastName}");
+                }
+            }
+        }
+
+        public static void GetAuthors()
+        {
+            using (BookCatalogContext context = new BookCatalogContext())
+            {
+                var authors = context.Authors.ToList();
+                foreach (var author in authors)
+                {
+                    Console.WriteLine($"Author: {author.FirstName} {author.LastName}");
+                }
+            }
+        }
     }
 }
