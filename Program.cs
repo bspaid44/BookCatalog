@@ -13,12 +13,22 @@ string userOption;
 
 do
 {
-    Console.WriteLine("Welcome to the Book Catalog!");
-    using (BookCatalogContext context = new BookCatalogContext())
+    Console.WriteLine("\n" + "Welcome to the Book Catalog!" + "\n");
+    Console.WriteLine("*************************************");
+    
+    try
     {
-        var books = context.Books.ToList();
-        Console.WriteLine($"There are {books.Count} books in the catalog.");
+        using (BookCatalogContext context = new BookCatalogContext())
+        {
+            var books = context.Books.ToList();
+            Console.WriteLine($"There are {books.Count} books in the catalog.");
+        }
+    } catch (Exception e)
+    {
+        Console.WriteLine("There was an error connecting to the database. Please check server connection.");
     }
+    
+    Console.WriteLine("*************************************" + "\n");
     Console.WriteLine("Please select an option:");
     Console.WriteLine("1. Add a book");
     Console.WriteLine("2. View all books");
