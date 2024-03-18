@@ -83,5 +83,53 @@ namespace BookCatalog
                 }
             }
         }
+
+        public static void EditBook()
+        {
+            using (BookCatalogContext context = new BookCatalogContext())
+            {
+                var books = context.Books.ToList();
+                Console.WriteLine("Enter the title of the book you want to edit: ");
+                string title = Console.ReadLine();
+                Book book = context.Books.Where(b => b.Title == title).FirstOrDefault();
+                
+                if (book == null)
+                {
+                    Console.WriteLine("\n" + "The title does not match any book in the catalog");
+                    return;
+                }
+
+                Console.WriteLine("What would you like to edit: ");
+                Console.WriteLine("1. Title");
+                Console.WriteLine("2. Genre");
+                Console.WriteLine("9. Exit");
+                string userOption = Console.ReadLine();
+
+                switch (userOption)
+                {
+                    case "1":
+
+                        Console.WriteLine("Enter the new title of the book: ");
+                        string newTitle = Console.ReadLine();
+                        book.Title = newTitle;
+                        context.SaveChanges();
+                        Console.WriteLine("Book edited successfully!");
+                        break;
+                    case "2":
+                        Console.WriteLine("Enter the new genre of the book: ");
+                        string newGenre = Console.ReadLine();
+                        book.Genre = newGenre;
+                        context.SaveChanges();
+                        Console.WriteLine("Book edited successfully!");
+                        break;
+                    case "9":
+                        Console.WriteLine("Goodbye!");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            }
+        }
     }
 }
