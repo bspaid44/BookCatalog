@@ -17,18 +17,33 @@ namespace BookCatalog
             string firstName = Console.ReadLine();
             Console.WriteLine("Enter the last name of the author: ");
             string lastName = Console.ReadLine();
-            Author author = new Author(firstName, lastName);
-            Console.WriteLine("Enter the title of the book: ");
-            string title = Console.ReadLine();
-            Console.WriteLine("Enter the genre of the book: ");
-            string genre = Console.ReadLine();
-            Book book = new Book(title, genre, author);
+
             using (BookCatalogContext context = new BookCatalogContext())
             {
-                context.Books.Add(book);
-                context.Authors.Add(author);
-                context.SaveChanges();
-                Console.WriteLine("Book added successfully!");
+                var oldAuthor = context.Authors.Where(a => a.FirstName == firstName && a.LastName == lastName).FirstOrDefault();
+                if (oldAuthor == null)
+                {
+                    Author author = new Author(firstName, lastName);
+                    context.Authors.Add(author);
+                    Console.WriteLine("Enter the title of the book: ");
+                    string title = Console.ReadLine();
+                    Console.WriteLine("Enter the genre of the book: ");
+                    string genre = Console.ReadLine();
+                    Book book = new Book(title, genre, author);
+                    context.Books.Add(book);
+                    context.SaveChanges();
+                    Console.WriteLine("Book added successfully!");
+                } else if (oldAuthor != null)
+                {
+                    Console.WriteLine("Enter the title of the book: ");
+                    string title = Console.ReadLine();
+                    Console.WriteLine("Enter the genre of the book: ");
+                    string genre = Console.ReadLine();
+                    Book book = new Book(title, genre, oldAuthor);
+                    context.Books.Add(book);
+                    context.SaveChanges();
+                    Console.WriteLine("Book added successfully!");
+                }
             }
         }
 
