@@ -71,7 +71,7 @@ namespace BookCatalog
         {
             using (BookCatalogContext context = new BookCatalogContext())
             {
-                var books = context.Books.ToList();
+                var books = context.Books.OrderBy(m => m.AuthorId).ToList();
                 var authors = context.Authors.ToList();
                 foreach (var book in books)
                 {
