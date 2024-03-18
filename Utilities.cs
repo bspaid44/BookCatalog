@@ -28,6 +28,27 @@ namespace BookCatalog
                 context.Books.Add(book);
                 context.Authors.Add(author);
                 context.SaveChanges();
+                Console.WriteLine("Book added successfully!");
+            }
+        }
+
+        public static void RemoveBook()
+        {
+            Console.WriteLine("Enter the title of the book you want to remove: ");
+            string title = Console.ReadLine();
+            try
+            {
+                using (BookCatalogContext context = new BookCatalogContext())
+                {
+                    var book = context.Books.Where(b => b.Title == title).FirstOrDefault();
+                    context.Books.Remove(book);
+                    context.SaveChanges();
+                    Console.WriteLine("Book removed successfully!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The title does not match any book in the catalog");
             }
         }
 

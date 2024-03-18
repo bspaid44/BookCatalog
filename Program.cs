@@ -23,6 +23,7 @@ do
     Console.WriteLine("1. Add a book");
     Console.WriteLine("2. View all books");
     Console.WriteLine("3. View all authors");
+    Console.WriteLine("4. Remove a book");
     Console.WriteLine("9. Exit");
 
     userOption = Console.ReadLine();
@@ -31,13 +32,15 @@ do
     {
         case "1":
             Utilities.AddBook();
-            Console.WriteLine("Book added successfully!");
             break;
         case "2":
             Utilities.GetBooks();
             break;
         case "3":
             Utilities.GetAuthors();
+            break;
+        case "4":
+            Utilities.RemoveBook();
             break;
         case "9":
             Console.WriteLine("Goodbye!");
