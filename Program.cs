@@ -38,7 +38,7 @@ do
     Console.WriteLine("9. Exit");
 
     userOption = Console.ReadLine();
-
+    
     switch (userOption)
     {
         case "1":

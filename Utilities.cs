@@ -15,8 +15,18 @@ namespace BookCatalog
         {
             Console.WriteLine("Enter the first name of the author: ");
             string firstName = Console.ReadLine();
+            if (firstName == "")
+            {
+                Console.WriteLine("First name cannot be empty. Please try again.");
+                return;
+            }
             Console.WriteLine("Enter the last name of the author: ");
             string lastName = Console.ReadLine();
+            if (lastName == "")
+            {
+                Console.WriteLine("Last name cannot be empty. Please try again.");
+                return;
+            }
 
             using (BookCatalogContext context = new BookCatalogContext())
             {
@@ -27,8 +37,18 @@ namespace BookCatalog
                     context.Authors.Add(author);
                     Console.WriteLine("Enter the title of the book: ");
                     string title = Console.ReadLine();
+                    if (title == "")
+                    {
+                        Console.WriteLine("Title cannot be empty. Please try again.");
+                        return;
+                    }
                     Console.WriteLine("Enter the genre of the book: ");
                     string genre = Console.ReadLine();
+                    if (genre == "")
+                    {
+                        Console.WriteLine("Genre cannot be empty. Please try again.");
+                        return;
+                    }
                     Book book = new Book(title, genre, author);
                     context.Books.Add(book);
                     context.SaveChanges();
@@ -37,8 +57,18 @@ namespace BookCatalog
                 {
                     Console.WriteLine("Enter the title of the book: ");
                     string title = Console.ReadLine();
+                    if (title == "")
+                    {
+                        Console.WriteLine("Title cannot be empty. Please try again.");
+                        return;
+                    }
                     Console.WriteLine("Enter the genre of the book: ");
                     string genre = Console.ReadLine();
+                    if (genre == "")
+                    {
+                        Console.WriteLine("Genre cannot be empty. Please try again.");
+                        return;
+                    }
                     Book book = new Book(title, genre, oldAuthor);
                     context.Books.Add(book);
                     context.SaveChanges();
@@ -126,6 +156,11 @@ namespace BookCatalog
 
                         Console.WriteLine("Enter the new title of the book: ");
                         string newTitle = Console.ReadLine();
+                        if (newTitle == "")
+                        {
+                            Console.WriteLine("Title cannot be empty. Please try again.");
+                            return;
+                        }
                         book.Title = newTitle;
                         context.SaveChanges();
                         Console.WriteLine("Book edited successfully!");
@@ -133,6 +168,11 @@ namespace BookCatalog
                     case "2":
                         Console.WriteLine("Enter the new genre of the book: ");
                         string newGenre = Console.ReadLine();
+                        if (newGenre == "")
+                        {
+                            Console.WriteLine("Genre cannot be empty. Please try again.");
+                            return;
+                        }
                         book.Genre = newGenre;
                         context.SaveChanges();
                         Console.WriteLine("Book edited successfully!");
