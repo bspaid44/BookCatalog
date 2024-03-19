@@ -10,5 +10,5 @@ Simple EF project that can store book and author objects made based on user inpu
 - Case where Author has three or more names, ex. Geore R.R. Martin, David Adams Richards [ ]
 
 ## Getting Started
-Requires MySQL Local Database 
+Requires MS SQL Server Local Database 
 
