@@ -172,5 +172,62 @@ namespace BookCatalog
                 }
             }
         }
+
+        public static void EditAuthor()
+        {
+            using (BookCatalogContext context = new BookCatalogContext())
+            {
+                var authors = context.Authors.ToList();
+                Console.WriteLine("Enter the first name of the author you want to edit: ");
+                string firstName = Console.ReadLine();
+                Console.WriteLine("Enter the last name of the author you want to edit: ");
+                string lastName = Console.ReadLine();
+                Author author = context.Authors.Where(a => a.FirstName == firstName && a.LastName == lastName).FirstOrDefault();
+                if (author == null)
+                {
+                    Console.WriteLine("\n" + "The name does not match any author in the catalog");
+                    return;
+                }
+                Console.WriteLine("What would you like to edit: ");
+                Console.WriteLine("1. First Name");
+                Console.WriteLine("2. Last Name");
+                Console.WriteLine("9. Exit");
+                string userOption = Console.ReadLine();
+
+                switch (userOption)
+                {
+                    case "1":
+                        Console.WriteLine("Enter the new first name of the author: ");
+                        string newFirstName = Console.ReadLine();
+                        if (newFirstName == "")
+                        {
+                            Console.WriteLine("First name cannot be empty. Please try again.");
+                            return;
+                        }
+                        author.FirstName = newFirstName;
+                        context.SaveChanges();
+                        Console.WriteLine("Author edited successfully!");
+                        break;
+                    case "2":
+                        Console.WriteLine("Enter the new last name of the author: ");
+                        string newLastName = Console.ReadLine();
+                        if (newLastName == "")
+                        {
+                            Console.WriteLine("Last name cannot be empty. Please try again.");
+                            return;
+                        }
+                        author.LastName = newLastName;
+                        context.SaveChanges();
+                        Console.WriteLine("Author edited successfully!");
+                        break;
+                    case "9":
+                        Console.WriteLine("Goodbye!");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            }
+        }
     }
 }

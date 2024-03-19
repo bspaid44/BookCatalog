@@ -35,6 +35,7 @@ do
     Console.WriteLine("3. View all authors");
     Console.WriteLine("4. Remove a book");
     Console.WriteLine("5. Edit a book");
+    Console.WriteLine("6. Edit a author");
     Console.WriteLine("9. Exit");
 
     userOption = Console.ReadLine();
@@ -55,6 +56,9 @@ do
             break;
         case "5":
             Utilities.EditBook();
+            break;
+        case "6":
+            Utilities.EditAuthor();
             break;
         case "9":
             Console.WriteLine("Goodbye!");

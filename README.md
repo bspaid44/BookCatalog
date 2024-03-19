@@ -5,6 +5,7 @@ Simple EF project that can store book and author objects made based on user inpu
 Use Cases to consider:
 	- Books with Multiple Authors
 	- Books with Multiple Genres
-	- Edit Author of a book
+	- Edit Author of a book [x]
+	- Have Genre input be pre-defined options for cleaner data
 
 
