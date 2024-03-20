@@ -32,10 +32,11 @@ do
     Console.WriteLine("Please select an option:");
     Console.WriteLine("1. Add a book");
     Console.WriteLine("2. View all books");
-    Console.WriteLine("3. View all authors");
-    Console.WriteLine("4. Remove a book");
-    Console.WriteLine("5. Edit a book");
-    Console.WriteLine("6. Edit a author");
+    Console.WriteLine("3. View all books by genre");
+    Console.WriteLine("4. View all authors");
+    Console.WriteLine("5. Remove a book");
+    Console.WriteLine("6. Edit a book");
+    Console.WriteLine("7. Edit a author");
     Console.WriteLine("9. Exit");
 
     userOption = Console.ReadLine();
@@ -49,15 +50,18 @@ do
             Utilities.GetBooks();
             break;
         case "3":
-            Utilities.GetAuthors();
+            Utilities.GetBookByGenre();
             break;
         case "4":
-            Utilities.RemoveBook();
+            Utilities.GetAuthors();
             break;
         case "5":
-            Utilities.EditBook();
+            Utilities.RemoveBook();
             break;
         case "6":
+            Utilities.EditBook();
+            break;
+        case "7":
             Utilities.EditAuthor();
             break;
         case "9":

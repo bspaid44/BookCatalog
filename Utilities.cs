@@ -229,5 +229,46 @@ namespace BookCatalog
                 }
             }
         }
+
+        public static void GetBookByGenre ()
+        {
+            using (BookCatalogContext context = new BookCatalogContext())
+            {
+                var genres = context.Books.Select(b => b.Genre).Distinct().ToList();
+                Console.WriteLine("The genres in the catalog are: ");
+                foreach (var g in genres)
+                {
+                    Console.WriteLine(g + "\n");
+                }
+                
+                Console.WriteLine("Enter the genre of the book you want to find: ");
+                string genre = Console.ReadLine();
+                if (genre == "")
+                {
+                    Console.WriteLine("Genre cannot be empty. Please try again.");
+                    return;
+                }
+                
+                var books = context.Books.Where(b => b.Genre == genre).ToList();
+                if (books.Count == 0)
+                {
+                    Console.WriteLine("The genre does not match any book in the catalog");
+                    return;
+                }
+                
+                var authors = context.Authors.ToList();
+                foreach (var book in books)
+                {
+                    foreach (var author in authors)
+                    {
+                        if (book.AuthorId == author.AuthorId)
+                        {
+                            book.Author = author;
+                        }
+                    }
+                    Console.WriteLine($"Title: {book.Title}, Genre: {book.Genre}, Author: {book.Author.FirstName} {book.Author.LastName}" + "\n");
+                }
+            }
+        }
     }
 }
